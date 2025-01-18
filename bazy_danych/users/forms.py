@@ -22,7 +22,7 @@ class CustomRegisterForm(forms.ModelForm):
             'telefon': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Telefon', 'style': 'width: 500px'}),
         }
 
-    def clean(self):                                                         # walidacja hasła
+    def clean(self):                                                        # walidacja hasła
         cleaned_data = super().clean()                                      # pobiera oczyszczone dane
         password1 = cleaned_data.get('haslo')
         password2 = cleaned_data.get('haslo_2')
