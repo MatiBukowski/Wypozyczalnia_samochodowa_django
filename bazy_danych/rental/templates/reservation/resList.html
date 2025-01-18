@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Reservations List
+{% endblock %}
+
+{% block content %}
+<section style="max-width: 100%; overflow-x: hidden;">
+    <h1>Rezerwacje</h1>
+    <br>
+    <div style="color: #81dbb8; text-align: center; display: flex; justify-content: space-between; width: 100%; margin-left: 25px;">
+        <span>L.p.</span>
+        <span style="flex: 1;">
+            Pojazd
+        </span>
+        <span style="flex: 1;">
+           Data początku rezerwacji
+        </span>
+        <span style="flex: 1;">
+           Data zwrotu
+        </span>
+    </div>
+    <br>
+
+    {% for rezerwacja in rezerwacje %}
+        <article class="rezerwacja" style="color: #f0e995; text-align: center; display: flex; justify-content: space-between; width: 100%; margin-left: 25px;">
+            <span>{{ forloop.counter }}.</span>
+            <span style="flex: 1;">
+                {{ rezerwacja.ID_sprzetu }}
+            </span>
+            <span style="flex: 1;">
+                {{ rezerwacja.data_poczatku }}
+            </span>
+            <span style="flex: 1;">
+                {{ rezerwacja.data_zwrotu }}
+            </span>
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}

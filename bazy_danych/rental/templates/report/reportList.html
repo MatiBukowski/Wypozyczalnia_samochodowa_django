@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Reports List
+{% endblock %}
+
+{% block content %}
+<section style="max-width: 100%; overflow-x: hidden;">
+    <h1>Zgłoszenia</h1>
+    <br>
+    <div style="color: #81dbb8; text-align: center; display: flex; justify-content: space-between; width: 100%; margin-left: 25px;">
+        <span> L.p. </span>
+        <span style="flex: 0.5;">
+            Pojazd
+        </span>
+        <span style="flex: 0.5;">
+           Klient
+        </span>
+        <span style="flex: 0.5;">
+           Data zgłoszenia
+        </span>
+        <span style="flex: 0.5;">
+           Status
+        </span>
+        <span style="flex: 1;">
+           Opis
+        </span>
+    </div>
+    <br>
+
+    {% for usterka in usterkii %}
+        <article class="rezerwacja" style="color: #f0e995; text-align: center; display: flex; justify-content: space-between; width: 100%; margin-left: 25px;">
+            <span style="margin-left: 25px"> {{ forloop.counter }}. </span>
+            <span style="flex: 0.5;">
+                {{ usterka.ID_sprzetu }}
+            </span>
+            <span style="flex: 0.5">
+                {{ usterka.ID_klienta_zglaszajacego }}
+            </span>
+            <span style="flex: 0.5;">
+                {{ usterka.data_wyslania }}
+            </span>
+            <span style="flex: 0.5;">
+                {{ usterka.status }}
+            </span>
+            <span style="flex: 1;">
+                {{ usterka.opis }}
+            </span>
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}

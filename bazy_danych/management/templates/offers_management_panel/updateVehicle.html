@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Update Vehicle's Information
+{% endblock %}
+
+{% block content %}
+<head>
+    <style>
+        button {
+          padding: 20px 40px;
+          font-size: 20px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          position: absolute;          /* Pozycjonowanie absolutne */
+          left: 50%;                   /* Środek w poziomie */
+        }
+
+        input, textarea {
+            width: 30%; /* Szerokość 30% kontenera */
+            font-size: 15px; /* Zwiększony rozmiar tekstu */
+            padding: 10px; /* Większy odstęp wewnętrzny */
+            margin-bottom: 10px; /* Odstęp między polami */
+            margin-left: 10px;
+            border: 1px solid #ccc; /* Obramowanie */
+            border-radius: 5px; /* Zaokrąglone rogi */
+        }
+
+    </style>
+</head>
+<section>
+<!--    <h1>Zaktualizuj dane o istniejącym pojeździe</h1>-->
+<!--    <br>-->
+<!--    <form style="font-size: 32px; margin-left:25px;" action="/employee-panel/update-vehicle/" method="POST">    &lt;!&ndash; action - adres URL, na który mają być wysłane dane formularza po jego przesłaniu &ndash;&gt;-->
+<!--        {% csrf_token %}-->
+<!--        {{ formm }}-->
+<!--        <br>-->
+<!--        <button>Zaktualizuj</button>-->
+<!--    </form>-->
+    {% if step == 1 %}
+    <h1>Wybierz sprzęt do zaktualizowania informacji</h1>
+    <br>
+    <form style="font-size: 32px; margin-left:25px;" action="/employee-panel/update-vehicle/" method="POST">
+        {% csrf_token %}
+        {{ formm }}
+        <button name="select_vehicle">Dalej</button>
+    </form>
+    {% elif step == 2 %}
+    <h1>Edytuj dane sprzętu</h1>
+    <br>
+    <form style="font-size: 32px; margin-left:25px;" action="/employee-panel/update-vehicle/" method="POST">
+        {% csrf_token %}
+        {{ formm }}
+        <button name="update_vehicle">Zaktualizuj</button>
+    </form>
+    {% endif %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Remove Vehicle
+{% endblock %}
+
+{% block content %}
+<head>
+    <style>
+        button {
+          padding: 20px 40px;
+          font-size: 20px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          position: absolute;          /* Pozycjonowanie absolutne */
+          left: 50%;                   /* Środek w poziomie */
+        }
+
+        input, textarea {
+            width: 30%; /* Szerokość 30% kontenera */
+            font-size: 15px; /* Zwiększony rozmiar tekstu */
+            padding: 10px; /* Większy odstęp wewnętrzny */
+            margin-bottom: 10px; /* Odstęp między polami */
+            margin-left: 10px;
+            border: 1px solid #ccc; /* Obramowanie */
+            border-radius: 5px; /* Zaokrąglone rogi */
+        }
+
+    </style>
+</head>
+<section>
+    <h1>Usuń istniejący pojazd</h1>
+    <br>
+    <form style="font-size: 32px; margin-left:25px;" action="/employee-panel/remove-vehicle/" method="POST">    <!-- action - adres URL, na który mają być wysłane dane formularza po jego przesłaniu -->
+        {% csrf_token %}
+        {{ formm }}
+        <br>
+        <button>Usuń</button>
+    </form>
+</section>
+
+{% endblock %}

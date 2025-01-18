@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Notification
+{% endblock %}
+
+{% block content %}
+<section style="max-width: 100%; overflow-x: hidden;">
+    <h1>{{ powiadomieniee.tytul }}</h1>
+    <br>
+    <div style="color: #81dbb8; text-align: center; display: flex; justify-content: space-between; width: 100%; margin-left: 25px;">
+        <span style="flex: 1; margin-left: 230px;">
+            Treść wiadomości
+        </span>
+        <span style="text-align: right; margin-right: 50px">
+            {{ powiadomieniee.data_wyslania }}
+        </span>
+    </div>
+    <br>
+
+    <article class="rezerwacja" style="color: #f0e995; text-align: center; display: flex; justify-content: space-between; width: 100%; margin-left: 25px;">
+        <span style="flex: 1;">
+            {{ powiadomieniee.tresc }}
+        </span>
+        </article>
+</section>
+{% endblock %}

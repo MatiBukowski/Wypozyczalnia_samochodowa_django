@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Management Panel
+{% endblock %}
+
+{% block content %}
+    <h1 style="margin-top: 100px;">Panel zarządzania ofertą</h1>
+
+
+    <div style="display: flex; justify-content: space-between; width: 100%; gap: 100px">
+        <button onclick="location.href='/employee-panel/add-vehicle';" style="font-size: 28px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 15px; cursor: pointer; flex: 1; margin-left: 500px; margin-bottom: 500px; margin-top: 300px;">
+            Dodaj pojazd
+        </button>
+        <button onclick="location.href='{% url 'management:removeN' %}';" style="font-size: 28px; padding: 10px 20px; background-color: #FF9800; color: white; border: none; border-radius: 15px; cursor: pointer; flex: 1; margin-bottom: 500px; margin-top: 300px;">
+            Usuń pojazd
+        </button>
+        <button onclick="location.href='{% url 'management:updateN' %}';" style="font-size: 28px; padding: 10px 20px; background-color: #008CBA; color: white; border: none; border-radius: 15px; cursor: pointer; flex: 1; margin-right: 500px; margin-bottom: 500px; margin-top: 300px;">
+            Zaktualizuj informacje o pojeździe
+        </button>
+    </div>
+
+{% endblock %}

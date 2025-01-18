@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Car's data
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1> {{ sprzett.marka }} {{ sprzett.model }} </h1>
+    <br>
+    <br>
+    <article class="sprzet" >
+        <div style="color: #f0e995;">
+            <span style="color: #aea508; margin-left: 25px;">Silnik: </span>
+            <span>{{ sprzett.silnik }}</span>
+        </div>
+        <div style="color: #f0e995;">
+            <span style="color: #aea508; margin-left: 25px;">Moc: </span>
+            <span>{{ sprzett.moc }} KM</span>
+        </div>
+        <div style="color: #f0e995;">
+            <span style="color: #aea508; margin-left: 25px;">Moment obrotowy: </span>
+            <span>{{ sprzett.moment_obrotowy }} Nm</span>
+        </div>
+        <div style="color: #f0e995;">
+            <span style="color: #aea508; margin-left: 25px;">Typ: </span>
+            <span>{{ sprzett.typ_sprzetu }} </span>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        {% if user.is_authenticated %}
+            {% if sprzett.status_dostepnosci == 'dostępny' %}
+                <p style="color: green; font-size: 64px;">
+                    <a href="{% url 'rental:reservationN' oferta_slug=oferta.slug sprzet_slug=sprzett.slug %}">
+                    Zarezerwuj
+                    </a>
+                </p>
+            {% else %}
+        <p style="color: #BD0000; font-size: 64px;"><span title="Niedostępny">Zarezerwuj</span></p>
+            {% endif %}
+        {% else %}
+            {% if sprzett.status_dostepnosci == 'dostępny' %}
+        <p style="color: #BD0000; font-size: 64px;"><span title="Zaloguj się">Zarezerwuj</span></p>
+            {% else %}
+                <p style="color: #BD0000; font-size: 64px;"><span title="Zaloguj się">Zarezerwuj</span></p>
+            {% endif %}
+        {% endif %}
+    </article>
+
+</section>
+{% endblock %}

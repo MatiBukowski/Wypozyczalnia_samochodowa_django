@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Cars List
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1> {{ oferta.nazwa }} </h1>
+    <br>
+    <h2 style="font-size: 48px; margin-left: 10px;"> {{ oferta.opis }} </h2>
+    <br>
+    {% for sprzet in sprzetyy %}
+        <article class="sprzet" >
+            <h3 style="color: #f0e995;">
+                <div style="color: #f0e995; overflow: hidden;">
+                    <span style="float: left; margin-left: 25px;">
+                        <a href="{% url 'rental:carDataN' oferta_slug=oferta.slug sprzet_slug=sprzet.slug %}">
+                            {{ sprzet.marka }} {{ sprzet.model }}
+                        </a>
+                    </span>
+                    {% if sprzet.status_dostepnosci == 'dostępny' %}
+                    <span style="color: green; float: right; margin-right: 25px;">{{ sprzet.status_dostepnosci }}</span>
+                    {% else %}
+                    <span style="color: #BD0000; float: right; margin-right: 25px;">{{ sprzet.status_dostepnosci }}</span>
+                    {% endif %}
+                </div>
+            </h3>
+<!--            <p>{{ sprzet.model }}</p>-->
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}

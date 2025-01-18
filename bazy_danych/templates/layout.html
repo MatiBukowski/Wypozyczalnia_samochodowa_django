@@ -1,0 +1,72 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+            Django App
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <nav style="position: fixed; top: 0; width: 100%; background-color: #808588; display: flex; align-items: center;">
+        <!-- Sekcja lewa -->
+        <div style="display: flex; gap: 40px; flex : 1;">                               <!-- flex : 1 - sekcja lewa i prawa zajmują tyle samo miejsca -->
+
+<!--            Register wyświetla się tylko wtedy kiedy użytkownik niezalogowany-->
+            {% if user.is_authenticated %}
+                {% if is_pracownik %}              <!-- Dla pracownika nie wyświetla rezerwacji -->
+                <a href="{% url 'rental:reportsN' %}" style="margin: 0;">Reports</a>
+                {% else %}
+                <a href="{% url 'rental:resListN' %}" style="margin: 0;">My reservations</a>
+                <a href="{% url 'rental:reportN' %}" style="margin: 0;">Report</a>
+                {% endif %}
+            <a href="{% url 'rental:notificationsN' %}" style="margin: 0;">Notifications</a>
+            {% else %}
+            <a href="{% url 'users:registerN' %}" style="margin: 0;">Register</a>
+            {% endif %}
+        </div>
+
+        <!-- Sekcja środkowa -->
+        <div style="display: flex; gap: 20px; ">
+            {% if is_pracownik == False %}
+            <a href="/" style="margin: 0;">Home</a>
+            <a href="/about" style="margin: 0;">About</a>
+    <!--        <a href="/offers" style="margin: 0 15px;">Offers</a>-->
+            <a href="{% url 'rental:offersN' %}" style="margin: 0;">Offers</a>
+<!--            <a href="{% url 'users:registerN' %}" style="margin: 0 15px;">Register</a>-->
+            {% else %}
+            <a href="/employee-panel" style="margin: 0;">Managament Panel</a>
+            {% endif %}
+        </div>
+        <!-- Sekcja prawa -->
+        <div style="display: flex; gap: 20px; flex : 1; justify-content: flex-end;">        <!-- justify-content: flex-end - flex do prawej krawędzi -->
+<!--            <a href="{% url 'users:loginN' %}" style="margin: 0;">Login</a>                &lt;!&ndash; góra-dół 0px, prawo-lewo 15px &ndash;&gt;-->
+<!--            <a href="{% url 'users:logoutN' %}" style="margin: 0;">Logout</a>-->
+
+<!--jeśli użytkownik zalogowany to wyświetla się logout, a jak niezalogowany to wyświetla się login -->
+            {% if user.is_authenticated %}
+            <form class="logout" action="{% url 'users:logoutN' %}" method="post">
+                {% csrf_token %}
+                <button class="logout-button" aria-label="Logout" title="Logout" style="all: unset; color: #81dbb8; cursor: pointer;" >Logout</button> <!-- styl taki, aby przycisk wyglądał jak normalny tekst -->
+            </form>
+            {% else %}
+            <a href="{% url 'users:loginPN' %}" style="margin: 0;">Pracownik</a>                <!-- góra-dół 0px, prawo-lewo 15px -->
+            <a href="{% url 'users:loginN' %}" style="margin: 0;">Login</a>                <!-- góra-dół 0px, prawo-lewo 15px -->
+            {% endif %}
+        </div>
+
+    </nav>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>

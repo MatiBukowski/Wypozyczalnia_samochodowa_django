@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Offers List
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Oferty</h1>
+    {% for oferta in oferty %}
+        <article class="oferta">
+            <h3 style="margin-left: 25px;">
+                <a href="{% url 'rental:offerCarN' slug=oferta.slug %}">
+                    {{ oferta.ID_oferty}}. {{ oferta.nazwa }}
+                </a>
+            </h3>
+<!--            <p>{{ oferta.ID_oferty }}</p>-->
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}
